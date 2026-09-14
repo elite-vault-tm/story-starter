@@ -66,43 +66,109 @@
   }
 
   .kicker{
-    font-family:var(--serif);
-    font-style:italic;
-    font-weight:500;
-    font-size:1.05rem;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:var(--sans);
+    font-style:normal;
+    font-weight:700;
+    font-size:0.76rem;
     color:var(--gold);
-    margin:0 0 18px;
-    letter-spacing:0.01em;
+    margin:0 0 28px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+  }
+
+  .kicker::after{
+    content:'';
+    display:block;
+    width:72px;
+    height:1px;
+    background:linear-gradient(90deg,var(--gold),rgba(199,154,59,0.15));
   }
 
   h1.hero-title{
     font-family:var(--serif);
     font-weight:600;
-    font-size:clamp(2.4rem, 8vw, 3.6rem);
-    line-height:1.04;
-    letter-spacing:-0.01em;
-    margin:0 0 22px;
+    font-size:clamp(2.7rem, 9vw, 4.1rem);
+    line-height:1.01;
+    letter-spacing:-0.02em;
+    margin:0 0 26px;
+    position:relative;
+    max-width:12ch;
   }
 
-  .hero-sub{
+  h1.hero-title::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-12px;
+    width:54px;
+    height:3px;
+    background:var(--fuchsia);
+    border-radius:999px;
+  }
+
+  .hero-copy{
+    margin-top:34px;
+  }
+
+  .hero-copy .intro-line{
+    font-size:1.03rem;
+    line-height:1.65;
+    color:rgba(246,240,232,0.84);
+    max-width:54ch;
+    margin:0 0 18px;
+  }
+
+  .story-chips{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    margin:22px 0 28px;
+  }
+
+  .story-chip{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border:1px solid rgba(246,240,232,0.12);
+    background:rgba(246,240,232,0.045);
+    border-radius:10px;
+    padding:13px 15px;
+    color:rgba(246,240,232,0.94);
+    font-size:0.98rem;
+    line-height:1.35;
+  }
+
+  .story-chip .emoji{
     font-size:1.15rem;
-    line-height:1.55;
-    color:rgba(246,240,232,0.86);
-    max-width:34ch;
-    margin:0 0 32px;
+    line-height:1;
+    flex-shrink:0;
   }
 
-  .hero-copy p{
-    font-size:1.02rem;
-    line-height:1.7;
-    color:rgba(246,240,232,0.78);
-    max-width:52ch;
-    margin:0 0 16px;
+  .hero-copy .start-line{
+    font-family:var(--serif);
+    font-size:1.28rem;
+    line-height:1.4;
+    color:var(--gold);
+    margin:0 0 10px;
+    font-weight:600;
   }
 
   .hero-copy .flip-line{
+    font-size:1.02rem;
+    line-height:1.65;
     color:var(--off-white);
     font-weight:600;
+    max-width:52ch;
+    margin:0;
+  }
+
+  @media (min-width:560px){
+    .story-chips{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+    }
   }
 
   /* how it works strip */
@@ -507,10 +573,15 @@
   .reminder-close{
     font-family:var(--serif);
     font-weight:600;
-    font-size:1.3rem;
+    font-size:clamp(2rem,7vw,3.2rem);
+    line-height:1.05;
     color:var(--gold);
-    margin:0 0 26px;
+    margin:0 0 30px;
     position:relative;
+    letter-spacing:-0.01em;
+    text-shadow:
+      0 0 10px rgba(199,154,59,0.28),
+      0 0 22px rgba(229,0,125,0.16);
   }
   .reminder-cta-lede{
     font-size:0.96rem;
@@ -560,14 +631,20 @@
   <div class="wrap">
     <p class="kicker">Your Story Is the Strategy</p>
     <h1 class="hero-title">Start With Your Story</h1>
-    <p class="hero-sub">You already have the story. Now let's use it.</p>
 
     <div class="hero-copy">
-      <p>You're not out of things to say.</p>
-      <p>You may just be overlooking what you've already lived.</p>
-      <p>A lesson you learned. Something that changed your mind. A mistake you would handle differently today. A moment that reminded you why your work matters.</p>
-      <p>Start with one real experience.</p>
-      <p class="flip-line">Then let AI help you find the message inside it.</p>
+      <p class="intro-line"><strong>You already have the story. Now let’s use it. ✨</strong></p>
+      <p class="intro-line">Sometimes the story is already sitting inside something you lived, learned, noticed, or had to figure out for yourself.</p>
+
+      <div class="story-chips" aria-label="Places your story may come from">
+        <div class="story-chip"><span class="emoji" aria-hidden="true">💭</span><span>Something you lived</span></div>
+        <div class="story-chip"><span class="emoji" aria-hidden="true">💡</span><span>Something you learned</span></div>
+        <div class="story-chip"><span class="emoji" aria-hidden="true">↪️</span><span>Something that changed your mind</span></div>
+        <div class="story-chip"><span class="emoji" aria-hidden="true">❤️</span><span>Something you still care deeply about</span></div>
+      </div>
+
+      <p class="start-line">Start with one real experience.</p>
+      <p class="flip-line">Then let AI help you pull out the message, the connection, and the part your audience needs to hear.</p>
     </div>
 
     <div class="how-strip">
@@ -826,9 +903,9 @@ Do not write the full post unless I ask.</div>
   <div class="wrap">
     <div class="reminder-card">
       <p class="reminder-main">You already had the story.</p>
-      <p class="reminder-sub">AI helps you organize it.<br><br>Your story can be personal without being private.</p>
+      <p class="reminder-sub">AI just helped you pull the message out of it.<br><br>Your story can be personal without revealing private details.</p>
       <p class="reminder-close">Your Story Is the Strategy.</p>
-      <p class="reminder-cta-lede">Continue learning with me inside The Elite Vault.</p>
+      <p class="reminder-cta-lede">Want more practical ways to use AI for your content and business?</p>
       <a class="cta-btn" href="https://www.skool.com/the-elite-vault/about" target="_blank" rel="noopener">Visit The Elite Vault</a>
     </div>
   </div>
@@ -836,7 +913,7 @@ Do not write the full post unless I ask.</div>
 
 <footer>
   <div class="brand-line">Created by Sabrina Nichols Johnson • The Elite Vault</div>
-  <div>Built to help experienced women turn lived experience into content that connects.</div>
+  <div>Built to help Gen X women turn lived experience into content that connects.</div>
 </footer>
 
 <script>
